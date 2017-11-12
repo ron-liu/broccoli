@@ -17,6 +17,7 @@ IMO, it can remove all distractions for the user and help user concentrate.
 - In the invite form, the field level validation will display under the field, by doing that, it has enough space to show error and will not move other elements around.
  
 ## Implementation details
+- Use `flex` to layout;
 - Introduced `redux` to implement `modal dialog` and `toast` easily; 
 - Heavily use `Higher Order Component` pattern with `recompose` help;
 - Use `styled-component` to modular css;
