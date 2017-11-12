@@ -2,13 +2,14 @@
 
 import React from 'react';
 import {Header, Footer, Content, Modal, Toast} from './components'
-import styled from 'styled-components'
+import styled, {injectGlobal} from 'styled-components'
 import {createStore, combineReducers, compose, applyMiddleware} from 'redux'
 import {Provider} from 'react-redux'
 import modalReducer from './components/modal/modal-reducer.duck'
 import { reducer as formReducer } from 'redux-form'
 import toastReducer from './components/toast/toast-reducer.duck'
 import thunk from 'redux-thunk'
+import 'typeface-roboto'
 
 const composeEnhancers =
 	typeof window === 'object' &&
@@ -35,7 +36,13 @@ const Layout = styled.div`
 	text-align: center;
 	position: relative;
 `
-
+injectGlobal`
+	body {
+		font-family: Roboto, Arial, sans-serif;
+		margin:0;
+		box-sizing: border-box;
+	}
+`
 const App = () => (
     <Provider store={store}>
     <Layout>

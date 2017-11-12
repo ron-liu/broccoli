@@ -1,10 +1,10 @@
 // @flow
 
 import React from 'react'
-import {setPropTypes, compose, withHandlers, withState} from 'recompose'
+import {setPropTypes, compose, withHandlers} from 'recompose'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import Button from './button'
+import Button from './Button'
 import {withModal} from "../util/index";
 import {reduxForm, Field} from 'redux-form'
 import FormInput from './FormInput'
@@ -16,25 +16,31 @@ const Form = styled.form`
 	display: flex;
 	flex-direction: column;
 `
+const Title = styled.h2`
+	color: rgb(47, 48, 51);
+	font-size: 2em;
+	margin: 0;
+`
 
-const matchWith = (nameToMatch) => (value, allValue = {}) => {
-	const ret = value === allValue[nameToMatch]
+const matchWith = (nameToMatch) => (value, allValue = {}) => value === allValue[nameToMatch]
 		? undefined
 		: `Not match with ${nameToMatch}`
-	console.log(ret, 777, value, allValue, nameToMatch)
-	return ret
-}
 
 const minLength3 = minLength(3)
 const matchWithConfirmedEmail = matchWith('confirmedEmail')
 const matchWithEmail = matchWith('email')
 
+const Header = styled.div`
+	padding: 0 2em 2em 2em;
+`
 const InviteDialog = (props) => {
 	const {handleSubmit, submitting, save } = props
 	
 	return (
 		<Form onSubmit={handleSubmit(save)}>
-			<h2>Request an invite</h2>
+			<Header>
+				<Title>Request an invite</Title>
+			</Header>
 			<Field
 				name="name" component={FormInput} placeholder="Full Name"
 				validate={[ required, minLength3 ]}

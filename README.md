@@ -6,11 +6,13 @@
 - [x] Add toast
 - [x] Add validations for invite form
 - [x] change the close sign on each dialog  
-- [ ] make pages beautiful
-  - [ ] home page
-  - [ ] invite form dialog
-  - [ ] message dialog
-- [ ] mobile friendly  
+- [x] make pages beautiful
+  - [x] home page
+  - [x] invite form dialog
+- [x] mobile friendly 
+- [x] mobile font size friendly 
+- [ ] remove all warnings
+- [ ] Use better font  
 - [ ] animation on dialog
 - [ ] Handle when server is down or no response
 - [ ] introduce storyboard

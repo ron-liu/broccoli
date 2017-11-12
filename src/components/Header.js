@@ -8,14 +8,14 @@ const Header = styled.div`
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: center;
-    padding: 1rem;
+    padding: 1rem 2rem;
 	width: 100%;
     font-size: 1.5rem;
-	background-color:deepskyblue;
-	color: white;
+	color: #7a8599;
     position: fixed;
     top:0;
     left:0;
+    border-bottom: 1px solid #e6e9f0;
 `
 
 export default () => (

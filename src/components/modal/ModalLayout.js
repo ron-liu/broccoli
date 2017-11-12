@@ -8,9 +8,9 @@ import {compose} from 'recompose'
 
 const CornerButton = styled.a`
 	color: lightgray;
-	&:hover {
-		color:darkgray;
-	}
+		&:hover {
+			color:darkgray;
+		}
 	cursor: pointer;
 	position: fixed;
 	top: 1em;
@@ -30,8 +30,8 @@ const DialogContainer = styled.div`
 	display: flex;
 `
 const StyledMdClose = styled(MdClose)`
-	width: 1.5em;
-	height: 1.5em;
+	width: 3em;
+	height: 3em;
 `
 
 const SpinnerWithOverlay = () => (

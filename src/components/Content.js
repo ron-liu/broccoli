@@ -2,9 +2,9 @@
 
 import React from 'react'
 import styled from 'styled-components'
-import Button from './button'
+import Button from './Button'
 import {compose} from 'recompose'
-import {withModal} from "../util/index";
+import {withModal, media} from "../util";
 
 const Wrapper = styled.div`
 	display: flex;
@@ -12,15 +12,25 @@ const Wrapper = styled.div`
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
-	width: 60vw;
+	box-sizing: border-box;
+	padding: 1rem;
+	${media.desktop`width: 60%;`}
+	${media.tablet`width: 80%`}
+	${media.phone`width: 100%`}
 `
 
-const Title = styled.div`
-	font-size: 3em;
+const Title = styled.h1`
+	font-size: 2.8em;
+	color: rgb(47, 48, 51);
+	font-weight: 400;
+	margin: 0;
 `
 
-const SubTitle = styled.div`
-	font-size: 1em;
+const SubTitle = styled.h3`
+	font-size: 1.5em;
+	color: rgb(47, 48, 51);
+	font-weight: 400;
+	margin: 2rem 0;
 `
 
 const Content = (props) => {

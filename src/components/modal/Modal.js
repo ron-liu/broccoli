@@ -1,14 +1,11 @@
 // @flow
 
 import React from 'react'
-import styled from 'styled-components'
 import {compose, setPropTypes, defaultProps, branch, renderComponent} from 'recompose'
 import PropTypes from 'prop-types'
 import InviteDialog from '../InviteDialog'
 import MessageDialog from '../MessageDialog'
 import { connect } from 'react-redux'
-import Overlay from '../Overlay'
-import {closeModal} from './modal-reducer.duck'
 import ModalLayout from "./ModalLayout";
 
 const dialogs = {

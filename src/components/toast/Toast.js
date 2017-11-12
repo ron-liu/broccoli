@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {branch, compose, renderComponent, setPropTypes, defaultProps} from 'recompose'
-import {connect} from 'react-redux'
 import {withToast} from "../../util/hoc";
 import MdClose from 'react-icons/lib/md/close'
 
