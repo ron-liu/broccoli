@@ -2,6 +2,13 @@
 
 Running site: [Github pages](https://ron-liu.github.io/broccoli/)
 
+## Quick start
+```bash
+git clone git@github.com:ron-liu/broccoli.git
+cd broccoli
+yarn start
+```
+
 ## UX considerations
 - Use a sticky `toast` to inform user, which unify information and error. 
 Also, the toast will disappear in 5s.      
