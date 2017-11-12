@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import {withCloseModal} from "../../util/index";
+import {withCloseModal} from '../../util/index';
+import MdClose from 'react-icons/lib/md/close'
 
 const CornerButton = styled.a`
 	color: lightgray;
@@ -26,12 +27,16 @@ const Overlay = styled.div`
 	flex-direction: column;
 	display: flex;
 `
+const StyledMdClose = styled(MdClose)`
+	width: 1.5em;
+	height: 1.5em;
+`
 
 const ModalOverlay = (props) => {
 	const {close, children} = props
 	return (
 		<Overlay>
-			<CornerButton onClick={close}>X</CornerButton>
+			<CornerButton onClick={close}><StyledMdClose/></CornerButton>
 			{children}
 		</Overlay>
 	)

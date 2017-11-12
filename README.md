@@ -9,6 +9,6 @@
   - [ ] invite form dialog
   - [ ] message dialog
 - [ ] mobile friendly  
-- [ ] change the close sign on each dialog  
+- [x] change the close sign on each dialog  
 - [ ] animation on dialog
 - [ ] introduce storyboard
