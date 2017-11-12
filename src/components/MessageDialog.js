@@ -4,7 +4,7 @@ import React from 'react'
 import {setPropTypes, compose} from 'recompose'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import Button from './button'
+import Button from './Button'
 import {withModal} from "../util/index";
 
 const Dialog = styled.div`
