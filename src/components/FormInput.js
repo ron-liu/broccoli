@@ -12,7 +12,7 @@ const FormInput = ({
 }) => (
 	<div>
 		<div>
-			<input {...input} placeholder={placeholder} type={type} />
+			<Input {...input} placeholder={placeholder} type={type} />
 			{touched &&
 			((error && <span>{error}</span>) ||
 				(warning && <span>{warning}</span>))}

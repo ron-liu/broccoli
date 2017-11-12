@@ -8,7 +8,7 @@ import Button from './button'
 import {withModal} from "../util/index";
 import {reduxForm, Field} from 'redux-form'
 import FormInput from './FormInput'
-import {required} from '../util'
+import {required, minLength, email} from '../util'
 import {requestInvite} from '../util/service'
 import {withToast} from "../util/hoc";
 
@@ -16,6 +16,19 @@ const Form = styled.form`
 	display: flex;
 	flex-direction: column;
 `
+
+const matchWith = (nameToMatch) => (value, allValue = {}) => {
+	const ret = value === allValue[nameToMatch]
+		? undefined
+		: `Not match with ${nameToMatch}`
+	console.log(ret, 777, value, allValue, nameToMatch)
+	return ret
+}
+
+const minLength3 = minLength(3)
+const matchWithConfirmedEmail = matchWith('confirmedEmail')
+const matchWithEmail = matchWith('email')
+
 const InviteDialog = (props) => {
 	const {handleSubmit, submitting, save } = props
 	
@@ -24,10 +37,16 @@ const InviteDialog = (props) => {
 			<h2>Request an invite</h2>
 			<Field
 				name="name" component={FormInput} placeholder="Full Name"
-				validate={[required]}
+				validate={[ required, minLength3 ]}
 			/>
-			<Field name="email" component={FormInput} placeholder="Email" />
-			<Field name="confirmedEmail" component={FormInput} placeholder="Confirmed Email" />
+			<Field
+				name="email" component={FormInput} placeholder="Email"
+				validate={[required, email, matchWithConfirmedEmail]}
+			/>
+			<Field
+				name="confirmedEmail" component={FormInput} placeholder="Confirmed Email"
+				validate={[required, email, matchWithEmail]}
+			/>
 			<Button type="submit" disabbled={submitting}>Save</Button>
 		</Form>
 	)
@@ -38,14 +57,14 @@ export default compose(
 	withToast,
 	withHandlers({
 		save: props => form => {
-			const {setModalError, closeModal, setModalSpinning, toast, setModalSpinningOff} = props
+			const {closeModal, setModalSpinning, toast, setModalSpinningOff} = props
 			setModalSpinning()
 			return requestInvite(form.name, form.email)
 			.then(res => {
 				setModalSpinningOff()
 				if (res.success) {
 					closeModal()
-					return toast('All done, saved successfully')
+					return toast('All done, saved successfully', 'info')
 				}
 				toast(res.message, 'error')
 			})
