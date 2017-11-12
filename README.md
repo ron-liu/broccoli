@@ -1,8 +1,9 @@
 # Code challenge
 
 ## Things left
-- [ ] Display error message in invite form
+- [x] Display error message in invite form
 - [ ] Add overlay when saving
+- [ ] Add validations for invite form
 - [ ] Handle when server is down or no response
 - [ ] make pages beautiful
   - [ ] home page

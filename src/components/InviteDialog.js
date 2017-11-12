@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import {setPropTypes, compose, withHandlers} from 'recompose'
+import {setPropTypes, compose, withHandlers, withState} from 'recompose'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Button from './button'
@@ -17,12 +17,17 @@ const Form = styled.form`
 	display: flex;
 	flex-direction: column;
 `
+const Error = styled.p`
+	color: red;
+	font-size: 1em;
+`
 const InviteDialog = (props) => {
-	const {close, handleSubmit, pristine, reset, submitting, save } = props
+	const {handleSubmit, submitting, save, state: {errorMessage} } = props
 	
 	return (
 		<Form onSubmit={handleSubmit(save)}>
 			<h2>Request an invite</h2>
+			<Error>{errorMessage}</Error>
 			<Field
 				name="name" component={FormInput} placeholder="Full Name"
 				validate={[required]}
@@ -35,14 +40,15 @@ const InviteDialog = (props) => {
 }
 
 export default compose(
-	withCloseModal,
 	withOpenModal,
+	withState('state', 'setState', {}),
 	withHandlers({
 		save: props => form => {
+			const {setState, open} = props
 			return requestInvite(form.name, form.email)
 			.then(res => {
 				if (res.success) {
-					props.open(
+					return open(
 						'message',
 						{
 							title: 'All done',
@@ -50,6 +56,7 @@ export default compose(
 						}
 					)
 				}
+				setState({errorMessage: res.message})
 			})
 		}
 	}),
