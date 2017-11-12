@@ -7,5 +7,10 @@ export default styled.div`
 	top: 0;
 	left: 0;
 	background-color: black;
-	opacity: 0.6;
+	opacity: 0.7;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: white;
 `

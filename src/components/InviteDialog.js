@@ -5,29 +5,23 @@ import {setPropTypes, compose, withHandlers, withState} from 'recompose'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Button from './button'
-import {withCloseModal} from "../util/index";
+import {withModal} from "../util/index";
 import {reduxForm, Field} from 'redux-form'
 import FormInput from './FormInput'
 import {required} from '../util'
 import {requestInvite} from '../util/service'
-import {withOpenModal} from "../util/hoc";
-
+import {withToast} from "../util/hoc";
 
 const Form = styled.form`
 	display: flex;
 	flex-direction: column;
 `
-const Error = styled.p`
-	color: red;
-	font-size: 1em;
-`
 const InviteDialog = (props) => {
-	const {handleSubmit, submitting, save, state: {errorMessage} } = props
+	const {handleSubmit, submitting, save } = props
 	
 	return (
 		<Form onSubmit={handleSubmit(save)}>
 			<h2>Request an invite</h2>
-			<Error>{errorMessage}</Error>
 			<Field
 				name="name" component={FormInput} placeholder="Full Name"
 				validate={[required]}
@@ -40,23 +34,20 @@ const InviteDialog = (props) => {
 }
 
 export default compose(
-	withOpenModal,
-	withState('state', 'setState', {}),
+	withModal,
+	withToast,
 	withHandlers({
 		save: props => form => {
-			const {setState, open} = props
+			const {setModalError, closeModal, setModalSpinning, toast, setModalSpinningOff} = props
+			setModalSpinning()
 			return requestInvite(form.name, form.email)
 			.then(res => {
+				setModalSpinningOff()
 				if (res.success) {
-					return open(
-						'message',
-						{
-							title: 'All done',
-							message: 'You will be one of the first to experience Broccoli & Co, when we launch.'
-						}
-					)
+					closeModal()
+					return toast('All done, saved successfully')
 				}
-				setState({errorMessage: res.message})
+				toast(res.message, 'error')
 			})
 		}
 	}),

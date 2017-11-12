@@ -1,12 +1,14 @@
 // @flow
 
 import React from 'react';
-import {Header, Footer, Content, Modal} from './components'
+import {Header, Footer, Content, Modal, Toast} from './components'
 import styled from 'styled-components'
 import {createStore, combineReducers, compose, applyMiddleware} from 'redux'
 import {Provider} from 'react-redux'
 import modalReducer from './components/modal/modal-reducer.duck'
 import { reducer as formReducer } from 'redux-form'
+import toastReducer from './components/toast/toast-reducer.duck'
+import thunk from 'redux-thunk'
 
 const composeEnhancers =
 	typeof window === 'object' &&
@@ -17,9 +19,12 @@ const composeEnhancers =
 const store = createStore(
     combineReducers({
         modal: modalReducer,
-        form: formReducer
+        form: formReducer,
+	    toast: toastReducer
     }),
-	composeEnhancers()
+	composeEnhancers(
+		applyMiddleware(thunk)
+	)
 )
 
 const Layout = styled.div`
@@ -38,6 +43,7 @@ const App = () => (
         <Content/>
         <Footer/>
         <Modal/>
+	    <Toast/>
     </Layout>
     </Provider>
 )

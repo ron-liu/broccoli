@@ -10,7 +10,7 @@ const Footer = styled.div`
     bottom:0;
     left:0;
     > p {
-        font-size: 0.7rem;
+        font-size: 0.8rem;
     }
 `
 

@@ -9,7 +9,7 @@ import MessageDialog from '../MessageDialog'
 import { connect } from 'react-redux'
 import Overlay from '../Overlay'
 import {closeModal} from './modal-reducer.duck'
-import ModalOverlay from "./ModalOverlay";
+import ModalLayout from "./ModalLayout";
 
 const dialogs = {
 	'invite': InviteDialog,
@@ -20,12 +20,11 @@ const Modal = (props) => {
 	const {dialogName, dialogProps} = props
 	const Dialog = dialogs[dialogName]
 	return (
-		<ModalOverlay >
+		<ModalLayout >
 			<Dialog {...dialogProps} />
-		</ModalOverlay>
+		</ModalLayout>
 	)
 }
-
 
 export default compose(
 	connect(

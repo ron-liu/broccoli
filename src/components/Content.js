@@ -4,7 +4,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Button from './button'
 import {compose} from 'recompose'
-import {withOpenModal} from "../util/index";
+import {withModal} from "../util/index";
 
 const Wrapper = styled.div`
 	display: flex;
@@ -24,16 +24,16 @@ const SubTitle = styled.div`
 `
 
 const Content = (props) => {
-	const {open} = props
+	const {openModal} = props
 	return (
 		<Wrapper>
 			<Title>A better way to enjoy every day</Title>
 			<SubTitle>Be the first know when we launch.</SubTitle>
-			<Button onClick={()=>open('invite')}>Request an invite</Button>
+			<Button onClick={()=>openModal('invite')}>Request an invite</Button>
 		</Wrapper>
 	)
 }
 
 export default compose(
-	withOpenModal
+	withModal
 )(Content)

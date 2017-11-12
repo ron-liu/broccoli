@@ -5,7 +5,7 @@ import {setPropTypes, compose} from 'recompose'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Button from './button'
-import {withCloseModal} from "../util/index";
+import {withModal} from "../util/index";
 
 const Dialog = styled.div`
 	display: flex;
@@ -15,18 +15,18 @@ const Dialog = styled.div`
 `
 
 const MessageDialog = (props) => {
-	const {title, message, close} = props
+	const {title, message, closeModal} = props
 	return (
 		<Dialog>
 			<h2>{title}</h2>
 			<p>{message}</p>
-			<Button onClick={close}>OK</Button>
+			<Button onClick={closeModal}>OK</Button>
 		</Dialog>
 	)
 }
 
 export default compose(
-	withCloseModal,
+	withModal,
 	setPropTypes({
 		title: PropTypes.string,
 		message: PropTypes.string
