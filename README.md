@@ -1,6 +1,5 @@
 # Code challenge
 
-## Result
 Running site: [Github pages](https://ron-liu.github.io/broccoli/)
 
 ## UX considerations
@@ -14,6 +13,8 @@ IMO, it can remove all distractions for the user and help user concentrate.
 - Introduced `redux` to implement `modal dialog` and `toast` easily; 
 - Heavily use `Higher Order Component` pattern with `recompose` help;
 - Use `styled-component` to modular css;
+- Use `jest` to unit test mainly for reducers;
+- Use `flow` to type safe.
 
 ## Libraries used
 - `react` with `create-react-app`
