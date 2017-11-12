@@ -20,6 +20,7 @@ const Input = compose(
 	color: rgb(85, 85, 85);
 	width: 100%;
 	box-sizing: border-box;
+	transition: all 1s ease;
 	&:focus {
 		outline: none;
 		border-top: 0;

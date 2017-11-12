@@ -28,6 +28,8 @@ const DialogContainer = styled.div`
 	justify-content: center;
 	flex-direction: column;
 	display: flex;
+	transition: all 1s ease;
+
 `
 const StyledMdClose = styled(MdClose)`
 	width: 3em;

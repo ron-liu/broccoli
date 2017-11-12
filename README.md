@@ -11,7 +11,7 @@
   - [x] invite form dialog
 - [x] mobile friendly 
 - [x] mobile font size friendly 
-- [ ] remove all warnings
+- [x] remove all warnings
 - [ ] Use better font  
 - [ ] animation on dialog
 - [ ] Handle when server is down or no response

@@ -20,6 +20,7 @@ const Title = styled.h2`
 	color: rgb(47, 48, 51);
 	font-size: 2em;
 	margin: 0;
+	font-weight: 400;
 `
 
 const matchWith = (nameToMatch) => (value, allValue = {}) => value === allValue[nameToMatch]

@@ -42,6 +42,9 @@ injectGlobal`
 		margin:0;
 		box-sizing: border-box;
 	}
+	button {
+		font-family: Roboto, Arial, sans-serif;
+	}
 `
 const App = () => (
     <Provider store={store}>
