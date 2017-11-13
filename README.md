@@ -47,6 +47,6 @@ IMO, it can remove all distractions for the user and help user concentrate.
 - [x] mobile font size friendly 
 - [x] remove all warnings
 - [x] Use better font  
-- [ ] animation
+- [x] animation
 - [ ] Handle when server is down or no response
 - [ ] introduce storyboard
