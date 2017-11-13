@@ -16,10 +16,14 @@ const Footer = styled.div`
     }
     border-top: 1px solid #e6e9f0;
 `
+const StyledFaHeart = styled(FaHeart)`
+	color: orangered;
+	margin: 0 2px;
+`
 
 export default () => (
 	<Footer>
-		<p><span>Made with</span> <FaHeart/> <span>in Melbourne</span></p>
+		<p><span>Made with</span> <StyledFaHeart/> <span>in Melbourne</span></p>
 		<p>@ 2017 Broccoli & Co. All rights reserved.</p>
 	</Footer>
 )
