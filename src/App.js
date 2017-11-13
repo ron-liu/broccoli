@@ -45,6 +45,23 @@ injectGlobal`
 	button {
 		font-family: Roboto, Arial, sans-serif;
 	}
+	.fade-enter {
+	  opacity: 0.01;
+	}
+	
+	.fade-enter.fade-enter-active {
+	  opacity: 1;
+	  transition: opacity 700ms ease-in;
+	}
+	
+	.fade-exit {
+	  opacity: 1;
+	}
+	
+	.fade-exit.fade-exit-active {
+	  opacity: 0.01;
+	  transition: opacity 560ms ease-in;
+	}
 `
 const App = () => (
     <Provider store={store}>
@@ -52,7 +69,7 @@ const App = () => (
         <Header/>
         <Content/>
         <Footer/>
-        <Modal/>
+	    <Modal/>
 	    <Toast/>
     </Layout>
     </Provider>

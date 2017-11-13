@@ -1,12 +1,14 @@
 // @flow
 
 import React from 'react'
-import {compose, setPropTypes, defaultProps, branch, renderComponent} from 'recompose'
+import {compose, setPropTypes, defaultProps} from 'recompose'
 import PropTypes from 'prop-types'
 import InviteDialog from '../InviteDialog'
 import MessageDialog from '../MessageDialog'
-import { connect } from 'react-redux'
 import ModalLayout from "./ModalLayout";
+import {Fade} from "../../util/transition";
+import { TransitionGroup } from 'react-transition-group'
+import {withModal} from "../../util/hoc";
 
 const dialogs = {
 	'invite': InviteDialog,
@@ -14,37 +16,29 @@ const dialogs = {
 }
 
 const Modal = (props) => {
-	const {dialogName, dialogProps} = props
+	const {modalState: {dialogName, dialogProps, opened}} = props
 	const Dialog = dialogs[dialogName]
 	return (
-		<ModalLayout >
-			<Dialog {...dialogProps} />
-		</ModalLayout>
+		<TransitionGroup>
+			{
+				opened && (
+					<Fade>
+						<ModalLayout >
+							<Dialog {...dialogProps} />
+						</ModalLayout>
+					</Fade>
+				)
+			}
+		</TransitionGroup>
 	)
 }
 
 export default compose(
-	connect(
-		store => {
-			const {modal:{opened, dialogName, dialogProps}} = store
-			if (!opened) {
-				return {opened}
-			}
-			const dialog = dialogs[dialogName]
-			if(!dialog) {
-				console.error(`dialog ${dialogName} is invalid name`)
-				return {opened: false}
-			}
-			return { opened, dialogName, dialogProps}
-		}
-	),
-	branch(
-		(props) => !props.opened,
-		renderComponent(() => null)
-	),
+	withModal,
 	setPropTypes({
 		dialogName: PropTypes.string,
-		opened: PropTypes.bool
+		opened: PropTypes.bool,
+		dialogProps: PropTypes.object
 	}),
 	defaultProps({
 		opened: false

@@ -1,9 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import {branch, compose, renderComponent, setPropTypes, defaultProps} from 'recompose'
+import { compose, setPropTypes, defaultProps} from 'recompose'
 import {withToast} from "../../util/hoc";
 import MdClose from 'react-icons/lib/md/close'
+import { TransitionGroup } from 'react-transition-group'
+import {Fade} from "../../util";
 
 const ToastContainer = compose(
 	setPropTypes({
@@ -49,19 +51,24 @@ const ToastMessage = styled.span`
 	padding: 1em;
 `
 const Toast = (props) => {
-	const {toastState:{message, kind}, clearToast} = props
+	const {toastState:{message, kind, hasMessage}, clearToast} = props
 	return (
-		<ToastContainer kind={kind}>
-			<ToastMessage >{message}</ToastMessage>
-			<ConnorButton kind={kind} onClick={clearToast}><MdClose/></ConnorButton>
-		</ToastContainer>
+		<TransitionGroup>
+			{
+				hasMessage && (
+					<Fade>
+						<ToastContainer kind={kind}>
+							<ToastMessage >{message}</ToastMessage>
+							<ConnorButton kind={kind} onClick={clearToast}><MdClose/></ConnorButton>
+						</ToastContainer>
+					</Fade>
+				)
+			}
+		
+		</TransitionGroup>
 	)
 }
 
 export default compose(
-	withToast,
-	branch(
-		props => !props.toastState.hasMessage,
-		renderComponent(()=>null)
-	)
+	withToast
 )(Toast)
